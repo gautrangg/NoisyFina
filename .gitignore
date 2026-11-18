@@ -6,3 +6,6 @@ dist/
 .env.*
 !.env.example
 .DS_Store
+
+# Kế hoạch cá nhân, chỉ giữ ở máy
+PLAN.md
