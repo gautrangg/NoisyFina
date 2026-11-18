@@ -1,0 +1,13 @@
+{
+  "name": "noisyfina",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:chat": "npm run dev -w @noisyfina/web-chat",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  }
+}

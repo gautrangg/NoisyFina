@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "@noisyfina/ui/tokens.css";
+
+@theme inline {
+  --color-bg: var(--nf-bg);
+  --color-surface: var(--nf-surface);
+  --color-surface-2: var(--nf-surface-2);
+  --color-surface-3: var(--nf-surface-3);
+  --color-line: var(--nf-line);
+  --color-line-strong: var(--nf-line-strong);
+  --color-fg: var(--nf-fg);
+  --color-muted: var(--nf-muted);
+  --color-faint: var(--nf-faint);
+  --color-accent: var(--nf-accent);
+  --color-accent-strong: var(--nf-accent-strong);
+  --color-accent-soft: var(--nf-accent-soft);
+  --color-accent-line: var(--nf-accent-line);
+  --color-ok: var(--nf-ok);
+  --color-warn: var(--nf-warn);
+  --color-danger: var(--nf-danger);
+  --color-live: var(--nf-live);
+  --font-sans: var(--nf-font-sans);
+  --font-mono: var(--nf-font-mono);
+  --radius-sm: var(--nf-radius-sm);
+  --radius-md: var(--nf-radius-md);
+  --radius-lg: var(--nf-radius-lg);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--nf-bg);
+  color: var(--nf-fg);
+  font-family: var(--nf-font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--nf-accent-soft);
+  color: var(--nf-accent-strong);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Thanh cuộn mảnh, chỉ hiện rõ khi hover */
+.nf-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.nf-scroll:hover {
+  scrollbar-color: var(--nf-line-strong) transparent;
+}
+
+/* Tin mới trượt vào */
+@keyframes nf-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.nf-in {
+  animation: nf-in var(--nf-dur) var(--nf-ease-out);
+}
+
+/* Chấm LIVE */
+@keyframes nf-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--nf-live) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+.nf-live-dot {
+  animation: nf-pulse 1.8s var(--nf-ease-out) infinite;
+}
+
+/* Sân khấu video giả lập */
+@keyframes nf-drift-a {
+  0%, 100% { transform: translate(-8%, -6%) scale(1); }
+  50% { transform: translate(10%, 8%) scale(1.15); }
+}
+@keyframes nf-drift-b {
+  0%, 100% { transform: translate(12%, 10%) scale(1.1); }
+  50% { transform: translate(-10%, -4%) scale(0.95); }
+}
+.nf-blob-a { animation: nf-drift-a 18s var(--nf-ease-in-out) infinite; }
+.nf-blob-b { animation: nf-drift-b 22s var(--nf-ease-in-out) infinite; }
+
+@keyframes nf-eq {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+.nf-eq > span {
+  transform-origin: bottom;
+  animation: nf-eq 1.2s var(--nf-ease-in-out) infinite;
+}
+
+.nf-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+/* Slider */
+.nf-range {
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--nf-accent) var(--pct, 0%),
+    var(--nf-surface-3) var(--pct, 0%)
+  );
+  outline: none;
+}
+.nf-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--nf-fg);
+  border: 3px solid var(--nf-bg);
+  box-shadow: 0 0 0 1px var(--nf-line-strong);
+  cursor: pointer;
+}
+.nf-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--nf-fg);
+  border: 3px solid var(--nf-bg);
+  box-shadow: 0 0 0 1px var(--nf-line-strong);
+  cursor: pointer;
+}
+
+/* Đặt trong layer base để class tiện ích (focus:outline-none…) của Tailwind ghi đè được */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--nf-accent-line);
+    outline-offset: 2px;
+  }
+}
