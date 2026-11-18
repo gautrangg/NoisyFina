@@ -19,7 +19,6 @@ npm run dev:chat
 ```
 apps/web-chat     giao diện chat (Vite + React + Tailwind)
 packages/ui       design tokens dùng chung
-PLAN.md           kế hoạch chi tiết từng ngày
 RESEARCH.md       các project tương tự & cách Twitch/Discord/Slack/LinkedIn làm
 ```
 
@@ -31,8 +30,6 @@ RESEARCH.md       các project tương tự & cách Twitch/Discord/Slack/LinkedI
 4. Lưu trữ — Redis Streams + Postgres ghi theo lô
 5. Chịu lỗi — tắt server giữa chừng, không mất tin
 6. Node vs Go
-
-Chi tiết trong [PLAN.md](PLAN.md).
 
 ---
 
